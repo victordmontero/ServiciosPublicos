@@ -1,0 +1,42 @@
+
+CREATE TABLE TasaCambiaria
+(
+  CodMoneda CHAR(3) PRIMARY KEY,
+  Monto DECIMAL(18,2) NOT NULL DEFAULT (0.00)
+);
+
+CREATE TABLE IndiceInflacion
+(
+  InflacionId SERIAL PRIMARY KEY,
+  Periodo CHAR(6) NOT NULL,
+  Indice DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE SaludFinanciera
+(
+  Cedula VARCHAR(11) PRIMARY KEY,
+  Indicador BOOLEAN NOT NULL,
+  Comentario VARCHAR(255),
+  Monto DECIMAL(18,2)
+);
+
+CREATE TABLE HistorialCrediticio
+(
+  Cedula VARCHAR(11) NOT NULL,
+  DeudaRNC VARCHAR(11) NOT NULL,
+  Concepto VARCHAR(255),
+  Fecha TIMESTAMP NOT NULL,
+  Monto DECIMAL(18,2) NOT NULL DEFAULT (0.00)
+);
+
+CREATE TABLE Log
+(
+  Id SERIAL NOT NULL,
+  Date TIMESTAMP NOT NULL,
+  Thread VARCHAR(255) NOT NULL,
+  Level VARCHAR(50) NOT NULL,
+  Logger VARCHAR(255) NOT NULL,
+  Message VARCHAR(400) NOT NULL,
+  Exception VARCHAR(2000),
+  IP CHAR(15) NOT NULL
+);
