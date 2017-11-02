@@ -1,4 +1,4 @@
-# ServiciosPublicos
+﻿# ServiciosPublicos
 Proyecto de Servicios Web Publicos de las materias ISO810 e ISO815
 
 # Requerimiento General
@@ -9,3 +9,14 @@ Proyecto de Servicios Web Publicos de las materias ISO810 e ISO815
     1. Consultar la salud Financiera de un cliente
     1. Consultar el historial crediticio de un cliente
     1. Consulta de Uso de Web Services (Filtros: Nombre WS, Rango de fecha de invocación)
+
+
+
+
+
+
+
+
+
+
+Fabio Alvarado 2014-2613
