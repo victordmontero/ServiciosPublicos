@@ -50,6 +50,8 @@ namespace ServiciosPublicos
             return repo.ObtenerTodos().ToArray();
         }
         #endregion
+
+
         #region servicio de tasa cambiaria
         [WebMethod]
         public double ObtenerTasaCambiaria(String code)
@@ -57,6 +59,17 @@ namespace ServiciosPublicos
             var repo = new RepositorioTasaCambiaria();
             return repo.Obtener(code).Monto;
         }
+        #endregion
+
+
+        #region Servicio de Indice Inflacion 
+        [WebMethod]
+        public double ObtenerIndiceInflacion(string periodo)
+        {
+            var repo = new RepositorioIndiceInflacion();
+            return repo.Obtener(periodo).Indice;
+        }
+
         #endregion
 
     }
