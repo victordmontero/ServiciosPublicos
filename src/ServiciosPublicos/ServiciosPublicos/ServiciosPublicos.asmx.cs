@@ -39,7 +39,6 @@ namespace ServiciosPublicos
         [WebMethod]
         public SaludFinanciera ObtenerSaludFinanciera(string cedula)
         {
-            new RepositorioTasaCambiaria().Obtener("USD"); //TODO Borrar
             var repo = new RepositorioSaludFinanciera();
             return repo.Obtener(cedula);
         }
@@ -47,12 +46,18 @@ namespace ServiciosPublicos
         [WebMethod]
         public SaludFinanciera[] ObtenerSaludFinancieras()
         {
-            new RepositorioTasaCambiaria().ObtenerTodos(); //TODO Borrar
             var repo = new RepositorioSaludFinanciera();
             return repo.ObtenerTodos().ToArray();
         }
         #endregion
-
+        #region servicio de tasa cambiaria
+        [WebMethod]
+        public double ObtenerTasaCambiaria(String code)
+        {
+            var repo = new RepositorioTasaCambiaria();
+            return repo.Obtener(code).Monto;
+        }
+        #endregion
 
     }
 }
