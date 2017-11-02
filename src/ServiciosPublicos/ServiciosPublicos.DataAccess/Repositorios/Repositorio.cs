@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Odbc;
 using System.Linq;
 using System.Text;
@@ -9,11 +11,11 @@ namespace ServiciosPublicos.DataAccess.Repositorios
 {
     public abstract class Repositorio : IDisposable
     {
-        protected OdbcConnection connection;
+        protected NpgsqlConnection connection;
 
         public Repositorio()
         {
-            connection = new OdbcConnection("DSN=PostgreSQL35W");
+            connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["postgresql"].ConnectionString);
         }
 
         public void Dispose()
