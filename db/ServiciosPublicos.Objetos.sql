@@ -121,7 +121,7 @@ CREATE OR REPLACE FUNCTION AgregarSaludFinanciera(cedulaParam VARCHAR(11),indica
       (Cedula, Indicador, Comentario, Monto)
     VALUES (cedulaParam,indicadorParam,comentarioParam,montoParam);
   END;
-$$ LANGUAGE PLPGSQL
+$$ LANGUAGE PLPGSQL;
 
 CREATE OR REPLACE FUNCTION ActualizarSaludFinanciera(cedulaParam VARCHAR(11),indicadorParam BOOLEAN,comentarioParam VARCHAR(255),montoParam DECIMAL(18,2))
   RETURNS VOID AS $$
