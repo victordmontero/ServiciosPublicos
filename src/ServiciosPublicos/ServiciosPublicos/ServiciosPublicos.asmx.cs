@@ -59,6 +59,13 @@ namespace ServiciosPublicos
             var repo = new RepositorioTasaCambiaria();
             return repo.Obtener(code).Monto;
         }
+
+        [WebMethod]
+        public string[] ObtenerCodigosMonedas()
+        {
+            var repo = new RepositorioTasaCambiaria();
+            return repo.ObtenerTodos().Select(tc => tc.CodMoneda).ToArray();
+        }
         #endregion
 
 
