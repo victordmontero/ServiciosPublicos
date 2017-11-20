@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosPublicos", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosPublicos.DataAccess", "ServiciosPublicos.DataAccess\ServiciosPublicos.DataAccess.csproj", "{1B69FA4A-2508-412F-BD4B-E6B86C2C9E2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosPublicos.Logger", "ServiciosPublicos.Logger\ServiciosPublicos.Logger.csproj", "{72028C20-5B8E-43FB-B2FD-2ED2E6C0F68D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B69FA4A-2508-412F-BD4B-E6B86C2C9E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B69FA4A-2508-412F-BD4B-E6B86C2C9E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B69FA4A-2508-412F-BD4B-E6B86C2C9E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72028C20-5B8E-43FB-B2FD-2ED2E6C0F68D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72028C20-5B8E-43FB-B2FD-2ED2E6C0F68D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72028C20-5B8E-43FB-B2FD-2ED2E6C0F68D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72028C20-5B8E-43FB-B2FD-2ED2E6C0F68D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

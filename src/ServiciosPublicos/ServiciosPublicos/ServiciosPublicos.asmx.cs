@@ -1,12 +1,12 @@
-﻿using ServiciosPublicos.DataAccess;
+﻿using log4net;
 using ServiciosPublicos.DataAccess.Modelos;
 using ServiciosPublicos.DataAccess.Repositorios;
-using System;
-using System.Collections.Generic;
+using ServiciosPublicos.Logger;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
 
+[assembly: log4net.Config.XmlConfigurator()]
 namespace ServiciosPublicos
 {
     /// <summary>
@@ -17,6 +17,7 @@ namespace ServiciosPublicos
     [System.ComponentModel.ToolboxItem(false)]
     public class ServiciosPublicos : WebService
     {
+        static readonly ILog loggger = LogManager.GetLogger(typeof(ServiciosPublicos));
 
         #region Servicios de Historial Crediticio
         [WebMethod]
@@ -24,6 +25,10 @@ namespace ServiciosPublicos
         {
             var repo = new RepositorioHistorialCrediticio();
             var result = repo.Obtener(cedula);
+
+            log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+            loggger.Info(string.Format("Llamó ObtenerHistorialCrediticio({0})", cedula));
+
             return result;
         }
 
@@ -54,10 +59,23 @@ namespace ServiciosPublicos
 
         #region servicio de tasa cambiaria
         [WebMethod]
-        public double ObtenerTasaCambiaria(String code)
+        public double ObtenerTasaCambiaria(string code)
         {
             var repo = new RepositorioTasaCambiaria();
-            return repo.Obtener(code).Monto;
+            try
+            {
+                double result = repo.Obtener(code).Monto;
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerTasaCambiaria({0})", code));
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error("Error al llamar ObtenerTasaCambiaria", ex);
+                return 0;
+            }
         }
 
         [WebMethod]
@@ -69,7 +87,7 @@ namespace ServiciosPublicos
         #endregion
 
 
-        #region Servicio de Indice Inflacion 
+        #region Servicio de Indice Inflacion
         [WebMethod]
         public double ObtenerIndiceInflacion(string periodo)
         {

@@ -28,11 +28,14 @@ namespace ServiciosPublicos.DataAccess.Repositorios
                     using (var reader = cmd.ExecuteReader())
                     {
                         reader.Read();
-                        resultado = new TasaCambiaria()
+                        if (reader.HasRows)
                         {
-                            CodMoneda = reader["CodMoneda"].ToString(),
-                            Monto = Convert.ToDouble(reader["Monto"])
-                        };
+                            resultado = new TasaCambiaria()
+                            {
+                                CodMoneda = reader["CodMoneda"].ToString(),
+                                Monto = Convert.ToDouble(reader["Monto"])
+                            };
+                        }
                     }
                 }
                 return resultado;
@@ -66,7 +69,7 @@ namespace ServiciosPublicos.DataAccess.Repositorios
                             {
                                 CodMoneda = reader["CodMoneda"].ToString(),
                                 Monto = Convert.ToDouble(reader["Monto"])
-                            }); 
+                            });
                         }
                     }
                 }

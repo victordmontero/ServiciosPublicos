@@ -62,6 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\serviciospublicos - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\serviciospublicos - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\victordmontero.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -87,6 +89,10 @@
     <ProjectReference Include="..\ServiciosPublicos.DataAccess\ServiciosPublicos.DataAccess.csproj">
       <Project>{1b69fa4a-2508-412f-bd4b-e6b86c2c9e2b}</Project>
       <Name>ServiciosPublicos.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiciosPublicos.Logger\ServiciosPublicos.Logger.csproj">
+      <Project>{72028c20-5b8e-43fb-b2fd-2ed2e6c0f68d}</Project>
+      <Name>ServiciosPublicos.Logger</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

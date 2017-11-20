@@ -96,10 +96,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             {
                 connection.Open();
                 connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("ObtenerLogs", connection))
+                using (cmd = new NpgsqlCommand("AgregarLog", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("IdParam", entidad.Id);
                     cmd.Parameters.AddWithValue("DateParam", entidad.Date);
                     cmd.Parameters.AddWithValue("ThreadParam", entidad.Thread);
                     cmd.Parameters.AddWithValue("LevelParam", entidad.Level);
@@ -107,6 +106,7 @@ namespace ServiciosPublicos.DataAccess.Repositorios
                     cmd.Parameters.AddWithValue("MessageParam", entidad.Message);
                     cmd.Parameters.AddWithValue("ExceptionParam", entidad.Exception);
                     cmd.Parameters.AddWithValue("IPParam", entidad.IP);
+                    int result = cmd.ExecuteNonQuery();
                 }
             }
             finally

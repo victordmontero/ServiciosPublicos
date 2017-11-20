@@ -194,19 +194,18 @@ CREATE OR REPLACE FUNCTION ObtenerHistorialCrediticio(cedulaParam VARCHAR(11) DE
 ----------------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION AgregarLog(
-    IdParam INT,
     DateParam TIMESTAMP,
     ThreadParam VARCHAR(255),
     LevelParam VARCHAR(50),
     LoggerParam VARCHAR(255),
     MessageParam VARCHAR(400),
     ExceptionParam VARCHAR(2000),
-    IPParam CHAR(15))
+    IPParam VARCHAR(15))
   RETURNS VOID AS $$
   BEGIN
-    INSERT INTO Log (Id,Date,Thread,Level,Logger,Message,Exception,IP)
+    INSERT INTO Log (Date,Thread,Level,Logger,Message,Exception,IP)
       VALUES
-        (IdParam,DateParam,ThreadParam,LevelParam,LoggerParam,MessageParam,ExceptionParam,IPParam);
+        (DateParam,ThreadParam,LevelParam,LoggerParam,MessageParam,ExceptionParam,IPParam);
   END;
 $$ LANGUAGE PLPGSQL;
 
