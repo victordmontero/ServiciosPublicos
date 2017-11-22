@@ -23,20 +23,43 @@ namespace ServiciosPublicos
         [WebMethod]
         public HistorialCrediticio ObtenerHistorialCrediticio(string cedula)
         {
-            var repo = new RepositorioHistorialCrediticio();
-            var result = repo.Obtener(cedula);
+            try
+            {
+                var repo = new RepositorioHistorialCrediticio();
+                var result = repo.Obtener(cedula);
 
-            log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
-            loggger.Info(string.Format("Llamó ObtenerHistorialCrediticio({0})", cedula));
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerHistorialCrediticio({0})", cedula));
 
-            return result;
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error("Error al llamar ObtenerHistorialCrediticio", ex);
+                throw;
+            }
         }
 
         [WebMethod]
         public HistorialCrediticio[] ObtenerHistorialesCrediticios()
         {
-            var repo = new RepositorioHistorialCrediticio();
-            return repo.ObtenerTodos().ToArray();
+            try
+            {
+                var repo = new RepositorioHistorialCrediticio();
+                var result = repo.ObtenerTodos().ToArray();
+
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerHistorialesCrediticios()"));
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error("Error al llamar ObtenerHistorialesCrediticios", ex);
+                throw;
+            }
         }
         #endregion
 
@@ -44,15 +67,43 @@ namespace ServiciosPublicos
         [WebMethod]
         public SaludFinanciera ObtenerSaludFinanciera(string cedula)
         {
-            var repo = new RepositorioSaludFinanciera();
-            return repo.Obtener(cedula);
+            try
+            {
+                var repo = new RepositorioSaludFinanciera();
+                var result = repo.Obtener(cedula);
+
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerSaludFinanciera({0})", cedula));
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error(string.Format("Error al llamar ObtenerSaludFinanciera({0})", cedula), ex);
+                throw;
+            }
         }
 
         [WebMethod]
         public SaludFinanciera[] ObtenerSaludFinancieras()
         {
-            var repo = new RepositorioSaludFinanciera();
-            return repo.ObtenerTodos().ToArray();
+            try
+            {
+                var repo = new RepositorioSaludFinanciera();
+                var result = repo.ObtenerTodos().ToArray();
+
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerSaludFinancieras()"));
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error(string.Format("Error al llamar ObtenerSaludFinanciera()"), ex);
+                throw;
+            }
         }
         #endregion
 
@@ -74,15 +125,29 @@ namespace ServiciosPublicos
             {
                 log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
                 loggger.Error("Error al llamar ObtenerTasaCambiaria", ex);
-                return 0;
+                throw;
             }
         }
 
         [WebMethod]
         public string[] ObtenerCodigosMonedas()
         {
-            var repo = new RepositorioTasaCambiaria();
-            return repo.ObtenerTodos().Select(tc => tc.CodMoneda).ToArray();
+            try
+            {
+                var repo = new RepositorioTasaCambiaria();
+                var result = repo.ObtenerTodos().Select(tc => tc.CodMoneda).ToArray();
+
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerCodigosMonedas()"));
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error("Error al llamar ObtenerCodigosMonedas", ex);
+                throw;
+            }
         }
         #endregion
 
@@ -91,8 +156,22 @@ namespace ServiciosPublicos
         [WebMethod]
         public double ObtenerIndiceInflacion(string periodo)
         {
-            var repo = new RepositorioIndiceInflacion();
-            return repo.Obtener(periodo).Indice;
+            try
+            {
+                var repo = new RepositorioIndiceInflacion();
+                var result = repo.Obtener(periodo).Indice;
+
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Info(string.Format("Llamó ObtenerIndiceInflacion({0})", periodo));
+
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                log4net.GlobalContext.Properties["IP"] = HttpContext.Current.Request.UserHostAddress;
+                loggger.Error(string.Format("Error al llamar ObtenerIndiceInflacion({0})", periodo), ex);
+                throw;
+            }
         }
 
         #endregion

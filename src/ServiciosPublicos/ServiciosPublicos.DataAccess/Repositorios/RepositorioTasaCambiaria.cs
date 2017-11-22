@@ -18,10 +18,10 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
+                conn.Open();
+                conn.BeginTransaction();
 
-                using (cmd = new NpgsqlCommand("ObtenerTasaCambiaria", connection))
+                using (cmd = new NpgsqlCommand("ObtenerTasaCambiaria", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("codmonedaParam", key);
@@ -42,8 +42,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 
@@ -53,10 +53,10 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
+                conn.Open();
+                conn.BeginTransaction();
 
-                using (cmd = new NpgsqlCommand("ObtenerTasaCambiaria", connection))
+                using (cmd = new NpgsqlCommand("ObtenerTasaCambiaria", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("codmonedaParam", null);
@@ -77,8 +77,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
     }

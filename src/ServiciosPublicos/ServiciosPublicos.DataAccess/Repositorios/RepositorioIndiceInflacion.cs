@@ -18,9 +18,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("ObtenerIndiceInflacion", connection))
+                conn.Open();
+                conn.BeginTransaction();
+                using (cmd = new NpgsqlCommand("ObtenerIndiceInflacion", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("periodoParam", key);
@@ -38,8 +38,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 
@@ -49,10 +49,10 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
+                conn.Open();
+                conn.BeginTransaction();
 
-                using (cmd = new NpgsqlCommand("ObtenerIndiceInflacion", connection))
+                using (cmd = new NpgsqlCommand("ObtenerIndiceInflacion", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("periodoParam", null);
@@ -72,8 +72,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
     }

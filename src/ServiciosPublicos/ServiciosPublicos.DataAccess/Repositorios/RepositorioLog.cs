@@ -3,6 +3,7 @@ using ServiciosPublicos.DataAccess.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("ObtenerLogs", connection))
+                conn.Open();
+                conn.BeginTransaction();
+                using (cmd = new NpgsqlCommand("ObtenerLogs", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("IdParam", key);
@@ -44,8 +45,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
 
         }
@@ -56,9 +57,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("ObtenerLogs", connection))
+                conn.Open();
+                conn.BeginTransaction();
+                using (cmd = new NpgsqlCommand("ObtenerLogs", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("IdParam", null);
@@ -84,8 +85,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 
@@ -94,25 +95,28 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("AgregarLog", connection))
+                conn.Open();
+                //connection.BeginTransaction();
+                //using (cmd = new NpgsqlCommand("INSERT INTO Log (Date,Thread,Level,Logger,Message,Exception,IP)VALUES(:DateParam,:ThreadParam,:LevelParam,:LoggerParam,:MessageParam,:ExceptionParam,:IPParam)", conn))
+                //using (cmd = new NpgsqlCommand("AgregarLog(:DateParam,:ThreadParam,:LevelParam,:LoggerParam,:MessageParam,:ExceptionParam,:IPParam)", conn))
+                using (cmd = new NpgsqlCommand("AgregarLog", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("DateParam", entidad.Date);
-                    cmd.Parameters.AddWithValue("ThreadParam", entidad.Thread);
-                    cmd.Parameters.AddWithValue("LevelParam", entidad.Level);
-                    cmd.Parameters.AddWithValue("LoggerParam", entidad.Logger);
-                    cmd.Parameters.AddWithValue("MessageParam", entidad.Message);
-                    cmd.Parameters.AddWithValue("ExceptionParam", entidad.Exception);
-                    cmd.Parameters.AddWithValue("IPParam", entidad.IP);
+                    cmd.Parameters.AddWithValue(":DateParam", entidad.Date);
+                    cmd.Parameters.AddWithValue(":ThreadParam", entidad.Thread);
+                    cmd.Parameters.AddWithValue(":LevelParam", entidad.Level);
+                    cmd.Parameters.AddWithValue(":LoggerParam", entidad.Logger);
+                    cmd.Parameters.AddWithValue(":MessageParam", entidad.Message);
+                    cmd.Parameters.AddWithValue(":ExceptionParam", entidad.Exception);
+                    cmd.Parameters.AddWithValue(":IPParam", entidad.IP);
+
                     int result = cmd.ExecuteNonQuery();
                 }
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 

@@ -11,16 +11,16 @@ namespace ServiciosPublicos.DataAccess.Repositorios
 {
     public abstract class Repositorio : IDisposable
     {
-        protected NpgsqlConnection connection;
+        protected NpgsqlConnection conn;
 
         public Repositorio()
         {
-            connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["postgresql"].ConnectionString);
+            conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["postgresql"].ConnectionString);
         }
 
         public void Dispose()
         {
-            connection.Dispose();
+            conn.Dispose();
         }
     }
 }

@@ -18,9 +18,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             SaludFinanciera resultado = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("ObtenerSaludFinanciera", connection))
+                conn.Open();
+                conn.BeginTransaction();
+                using (cmd = new NpgsqlCommand("ObtenerSaludFinanciera", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("cedulaParam", key);
@@ -40,8 +40,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 
@@ -51,9 +51,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             List<SaludFinanciera> resultado = new List<SaludFinanciera>();
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                using (cmd = new NpgsqlCommand("ObtenerSaludFinanciera", connection))
+                conn.Open();
+                conn.BeginTransaction();
+                using (cmd = new NpgsqlCommand("ObtenerSaludFinanciera", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("cedulaParam", null);
@@ -75,8 +75,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
     }

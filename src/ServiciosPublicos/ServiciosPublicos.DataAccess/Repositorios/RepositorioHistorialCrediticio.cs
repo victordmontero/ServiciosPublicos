@@ -17,9 +17,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                cmd = new NpgsqlCommand("ObtenerHistorialCrediticio", connection);
+                conn.Open();
+                conn.BeginTransaction();
+                cmd = new NpgsqlCommand("ObtenerHistorialCrediticio", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("cedulaParam", key);
                 var reader = cmd.ExecuteReader();
@@ -41,8 +41,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 
@@ -52,9 +52,9 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             NpgsqlCommand cmd = null;
             try
             {
-                connection.Open();
-                connection.BeginTransaction();
-                cmd = new NpgsqlCommand("ObtenerHistorialCrediticio", connection);
+                conn.Open();
+                conn.BeginTransaction();
+                cmd = new NpgsqlCommand("ObtenerHistorialCrediticio", conn);
                 cmd.Parameters.AddWithValue("cedulaParam", null);
                 cmd.CommandType = CommandType.StoredProcedure;
                 var reader = cmd.ExecuteReader();
@@ -74,8 +74,8 @@ namespace ServiciosPublicos.DataAccess.Repositorios
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (conn != null)
+                    conn.Close();
             }
         }
 
