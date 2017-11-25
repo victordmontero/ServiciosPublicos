@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiciosPublicosConsulta.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,9 @@ namespace ServiciosPublicosConsulta.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ServiciosPublicosDbContext db = new ServiciosPublicosDbContext();
+            var logs = db.Logs;
+            return View(logs);
         }
 
         public ActionResult About()
