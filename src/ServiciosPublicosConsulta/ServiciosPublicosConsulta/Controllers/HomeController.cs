@@ -11,9 +11,8 @@ namespace ServiciosPublicosConsulta.Controllers
     {
         public ActionResult Index()
         {
-            ServiciosPublicosDbContext db = new ServiciosPublicosDbContext();
-            var logs = db.Logs;
-            return View(logs);
+            LogRepositorio repo = new LogRepositorio();
+            return View(repo.ObtenerLogs());
         }
 
         public ActionResult About()
