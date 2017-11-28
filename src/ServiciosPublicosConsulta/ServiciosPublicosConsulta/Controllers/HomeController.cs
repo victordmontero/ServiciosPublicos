@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiciosPublicosConsulta.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,8 @@ namespace ServiciosPublicosConsulta.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            LogRepositorio repo = new LogRepositorio();
+            return View(repo.ObtenerLogs());
         }
 
         public ActionResult About()
